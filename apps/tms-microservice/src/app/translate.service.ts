@@ -44,8 +44,8 @@ export class TranslateService {
     const userFullname = job.agentFullname;
     // prepare inital cache bank according to target and source language
     // NOTE: This sort of translating part from dataset is a BIG topic
-    // as per talking with Cesar Bretana other day, i assume some Machien learning programing is performing
-    // such task to translate line by line or multiple lines at a time.
+    // some Machine learning programing should take care of this?
+
     // HOWEVER, for this fast prototype i am fetching 10K and assuming that my all dataset is coming a arrray
     //  this is obviosuly not a productio solution just for development only.
     await this.createPaginatedFullDatasetBank(
