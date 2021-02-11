@@ -1,0 +1,284 @@
+{
+  "version": 2,
+  "projects": {
+    "translator-backend": {
+      "root": "apps/translator-backend",
+      "sourceRoot": "apps/translator-backend/src",
+      "projectType": "application",
+      "prefix": "translator-backend",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/translator-backend",
+            "main": "apps/translator-backend/src/main.ts",
+            "tsConfig": "apps/translator-backend/tsconfig.app.json",
+            "assets": ["apps/translator-backend/src/assets"],
+            "buildLibsFromSource": true,
+            "showCircularDependencies": false,
+            "webpackConfig": "webpack.config.ts",
+            "maxWorkers": 1,
+            "memoryLimit": 1024
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/translator-backend/src/environments/environment.ts",
+                  "with": "apps/translator-backend/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "translator-backend:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/translator-backend/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/translator-backend"],
+          "options": {
+            "jestConfig": "apps/translator-backend/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "tms-microservice": {
+      "root": "apps/tms-microservice",
+      "sourceRoot": "apps/tms-microservice/src",
+      "projectType": "application",
+      "prefix": "tms-microservice",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/tms-microservice",
+            "main": "apps/tms-microservice/src/main.ts",
+            "tsConfig": "apps/tms-microservice/tsconfig.app.json",
+            "assets": ["apps/tms-microservice/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/tms-microservice/src/environments/environment.ts",
+                  "with": "apps/tms-microservice/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "tms-microservice:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/tms-microservice/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/tms-microservice"],
+          "options": {
+            "jestConfig": "apps/tms-microservice/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "core-modules": {
+      "root": "libs/core-modules",
+      "sourceRoot": "libs/core-modules/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/core-modules/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/core-modules"],
+          "options": {
+            "jestConfig": "libs/core-modules/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "constants": {
+      "root": "libs/constants",
+      "sourceRoot": "libs/constants/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/constants/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/constants"],
+          "options": {
+            "jestConfig": "libs/constants/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "entities": {
+      "root": "libs/entities",
+      "sourceRoot": "libs/entities/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/entities/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/entities"],
+          "options": {
+            "jestConfig": "libs/entities/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "enums": {
+      "root": "libs/enums",
+      "sourceRoot": "libs/enums/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/enums/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/enums"],
+          "options": {
+            "jestConfig": "libs/enums/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "interfaces": {
+      "root": "libs/interfaces",
+      "sourceRoot": "libs/interfaces/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/interfaces/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/interfaces"],
+          "options": {
+            "jestConfig": "libs/interfaces/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "decorators": {
+      "root": "libs/decorators",
+      "sourceRoot": "libs/decorators/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/decorators/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/decorators"],
+          "options": {
+            "jestConfig": "libs/decorators/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "utils": {
+      "root": "libs/utils",
+      "sourceRoot": "libs/utils/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/utils/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/utils"],
+          "options": {
+            "jestConfig": "libs/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "nest-modules": {
+      "root": "libs/nest-modules",
+      "sourceRoot": "libs/nest-modules/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/nest-modules/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/nest-modules"],
+          "options": {
+            "jestConfig": "libs/nest-modules/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/nest"
+  },
+  "defaultProject": "translator-backend"
+}

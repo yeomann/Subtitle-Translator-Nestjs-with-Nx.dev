@@ -1,0 +1,31 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@subtitles-translator/core-modules": ["libs/core-modules/src/index.ts"],
+      "@subtitles-translator/constants": ["libs/constants/src/index.ts"],
+      "@subtitles-translator/entities": ["libs/entities/src/index.ts"],
+      "@subtitles-translator/enums": ["libs/enums/src/index.ts"],
+      "@subtitles-translator/interfaces": ["libs/interfaces/src/index.ts"],
+      "@subtitles-translator/decorators": ["libs/decorators/src/index.ts"],
+      "@subtitles-translator/utils": ["libs/utils/src/index.ts"],
+      "@subtitles-translator/nest-modules": ["libs/nest-modules/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

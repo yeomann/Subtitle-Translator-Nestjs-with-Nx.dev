@@ -1,0 +1,42 @@
+version: '3'
+services:
+  httpbackend:
+    image: ${DOCKER_REGISTRY}:latest
+    build:
+      context: .
+      dockerfile: Dockerfile-httpbackend
+    labels:
+      httpbackend: 'Subtitles Translator Backend API'
+    ports:
+      - 8088
+    depends_on:
+      - postgres
+    networks:
+      - translortnet
+  tms-microservice:
+    build:
+      context: .
+      dockerfile: DockerFile-microservice
+    labels:
+      tms-microservice: 'Microservice for TMS'
+    ports:
+      - 8888
+    depends_on:
+      - postgres
+    networks:
+      - translortnet
+  postgres:
+    image: postgres:12-alpine
+    ports:
+      - '5432:5432'
+    networks:
+      - translortnet
+  redis:
+    image: 'redis:alpine'
+    hostname: redis
+    ports:
+      - '6379:6379'
+    networks:
+      - translortnet
+networks:
+  translortnet:

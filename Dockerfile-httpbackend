@@ -1,0 +1,58 @@
+FROM node:12-alpine as dev-dependencies
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn --no-cache --ignore-optional --frozen-lockfile
+
+
+FROM node:12-alpine as prod-dependencies
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn # --production --frozen-lockfile
+
+
+FROM node:12-alpine as builder
+WORKDIR /app
+COPY --from=dev-dependencies /app /app
+COPY . .
+ENV NODE_ENV production
+RUN yarn build translator-backend --prod
+
+
+FROM node:12-alpine
+WORKDIR /app/dist/apps/translator-backend/
+ARG POSTGRES_HOST
+ARG POSTGRES_PORT
+ARG POSTGRES_USER
+ARG POSTGRES_PASSWORD
+ARG POSTGRES_DATABASE
+ARG POSTGRES_DATABASE_SCHEMA
+ARG MT5_CONFIG
+ARG REDIS_CONFIG
+ARG APP_CONFIG
+RUN echo "***********"
+RUN echo $POSTGRES_HOST
+RUN echo $POSTGRES_PORT
+RUN echo $POSTGRES_USER
+RUN echo $POSTGRES_PASSWORD
+RUN echo $POSTGRES_DATABASE
+RUN echo $POSTGRES_DATABASE_SCHEMA
+RUN echo $REDIS_CONFIG
+RUN echo $APP_CONFIG
+RUN echo "***********"
+RUN echo "POSTGRES_HOST=$POSTGRES_HOST" > .env
+RUN echo "POSTGRES_PORT=$POSTGRES_PORT" > .env
+RUN echo "POSTGRES_USER=$POSTGRES_USER" > .env
+RUN echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" > .env
+RUN echo "POSTGRES_DATABASE=$POSTGRES_DATABASE" > .env
+RUN echo "POSTGRES_DATABASE_SCHEMA=$POSTGRES_DATABASE_SCHEMA" > .env
+RUN echo "REDIS_CONFIG=$REDIS_CONFIG" >> .env
+RUN echo "APP_CONFIG=$APP_CONFIG" >> .env
+RUN echo "PORT=8088"  >> .env
+RUN echo "MODE=DEV"  >> .env
+RUN echo "RUN_MIGRATIONS=true"  >> .env
+RUN echo "JWT_SECRET=aBigSecret_2021!_secret_KEY"  >> .env
+COPY --from=prod-dependencies /app  .
+COPY --from=builder /app/dist/apps/translator-backend/ .
+
+EXPOSE 8080
+ENTRYPOINT ["node", "main.js"]

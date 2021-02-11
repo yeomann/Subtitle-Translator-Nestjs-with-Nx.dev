@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "subtitles-translator-project",
+  "private_key_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "private_key": "xxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "client_email": "xxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "client_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "auth_uri": "xxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "token_uri": "xxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "auth_provider_x509_cert_url": "xxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "client_x509_cert_url": "xxxxxxxxxxxxxxxxxxxxxxxxxxx"
+}
