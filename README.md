@@ -65,3 +65,6 @@ In order to translate a query, it uses the following flow:
 ]
 ```
 
+# License
+
+[MIT License](https://github.com/golevelup/nestjs/blob/master/LICENSE)
