@@ -43,7 +43,7 @@ Microservice will be live at localhost 8888
 
 ## Create initial user in the agent entity from the postgres
 
-Unfortunately, Due to limitation on my side, i couldn't move this task to migeration.
+Unfortunately, Due to fast prototype, i couldn't move this task to migeration.
 _Please use **real email** to test Email functionality of the system._
 
 ```txt
